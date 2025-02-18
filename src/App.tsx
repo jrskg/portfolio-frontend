@@ -1,6 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Test from "./pages/Test";
 import React, { Suspense } from "react";
 import TopLoader from "./components/TopLoader";
 
@@ -21,7 +20,6 @@ function App() {
             <AllProjects />
           </Suspense>
         } />
-        <Route path="/ok" element={<Test />} />
       </Routes>
     </Router>
   );

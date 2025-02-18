@@ -9,11 +9,13 @@ import Timeline from '../components/Timeline'
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom'
 import Testimonials from '../components/Testimonials'
+import NameModal from '../components/NameModal'
 
 const Home = () => {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white">
+      <NameModal/>
       <Hero />
       <Bio />
       <About />

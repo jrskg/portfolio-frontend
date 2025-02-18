@@ -17,8 +17,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onAIResponse }) => {
   const {messages, addMessage} = useContext(MessageContext)!;
   const [input, setInput] = useState('');
   const [aiTyping, setAiTyping] = useState(false);
-  const {setRepos} = useContext(GithubReposContext)!;
-  const {setEvents} = useContext(GithubEventsContext)!;
+  const {repos, setRepos} = useContext(GithubReposContext)!;
+  const {events, setEvents} = useContext(GithubEventsContext)!;
 
   const getAIResponse = async(): Promise<AIResponse | null> => {
     try {
@@ -75,11 +75,11 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onAIResponse }) => {
 
       {/* Input Area */}
       <div className="flex items-center gap-3 border-t border-gray-200 p-4">
-        <ToolTip text='Show data'>
+        {(repos.length > 0 || events.length > 0) && <ToolTip text='Show data'>
           <button onClick={() => onAIResponse(SERVER_DATA_KEYS.GITHUB_REPOS)} className='p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors'>
             <EyeIcon className='w-6 h-6' />
           </button>
-        </ToolTip>
+        </ToolTip>}
         <input
           type="text"
           value={input}

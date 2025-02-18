@@ -78,7 +78,7 @@ const Chat = () => {
           </div>
           <div className={cn('z-40 absolute left-1/2 -translate-x-1/2 p-3 bg-gray-600 rounded-lg shadow-lg shadow-gray-800 transition-all duration-300 ',
             interactiveTab ?
-              "top-5 w-[90%] opacity-100" :
+              "top-14 w-[90%] opacity-100" :
               "-top-10 w-0 opacity-0")}
             onClick={() => setToggleDetails(!toggleDetails)}
           >

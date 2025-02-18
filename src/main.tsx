@@ -6,16 +6,19 @@ import { MessageProvider } from './context/messages.tsx';
 import { GithubReposProvider } from './context/githubRepos.tsx';
 import { GithubEventsProvider } from './context/githubEvent.tsx';
 import { ToastContainer } from 'react-toastify';
+import { NameModalProvider } from './context/nameModal.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MessageProvider>
       <GithubReposProvider>
         <GithubEventsProvider>
-          <App />
-          <ToastContainer
-            theme='light'
-          />
+          <NameModalProvider>
+            <App />
+            <ToastContainer
+              theme='light'
+            />
+          </NameModalProvider>
         </GithubEventsProvider>
       </GithubReposProvider>
     </MessageProvider>

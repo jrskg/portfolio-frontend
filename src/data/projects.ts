@@ -157,5 +157,82 @@ export const projects: Project[] = [
     image: "https://res.cloudinary.com/douasqi2q/image/upload/v1739464499/portfolio-data/nepshop_xzqbhj.jpg",
     duration: "4 months",
     role: "Full Stack Developer"
+  },
+  {
+    id: 4,
+    title: "MemeBook",
+    description: "A social media platform for connecting with friends and family.",
+    longDescription: "MemeBook is a social media platform for built using react and express. It supports features like login, signup, post, comment, like, and follow & unfollow. It also has a chatting feature to connect with friends and family.",
+    technologies: ["React", "Redux", "CSS", "Material UI", "Node.js", "Express.js", "MongoDB", "Socket IO"],
+    features: [
+      "Users can login and signup",
+      "Users can follow and unfollow other users",
+      "Users can create post",
+      "Users can comment on post",
+      "Users can like post",
+      "Support one-to-one and group chat",
+      "Responsive design",
+    ],
+    challenges: [
+      "Implementing one-to-one and group chat",
+      "Implementing socket server",
+      "Ceating an authentication system using JWT"
+    ],
+    learnings: [
+      "Learnt about Socket IO",
+      "Implementing one-to-one and group chat",
+      "How to create UI in react",
+      "Learnt about state manegement in react",
+      "Learned about react router",
+      "First responsive design in web using media queries"
+    ],
+    githubUrls: [
+      {
+        name: "Project Repo",
+        url: "https://github.com/jrskg/memebook"
+      }
+    ],
+    image: "https://res.cloudinary.com/douasqi2q/image/upload/v1739874295/portfolio-data/social_jie6fq.jpg",
+    duration: "3-4 Months",
+    role: "Full Stack Developer",
+    // liveUrl: "",
+    // videoDemo: ""
+  },
+  {
+    id: 5,
+    title: "Todoist",
+    description: "An app for managing tasks and day to day activities.",
+    longDescription: "Todoist is an app for managing tasks and day to day activities. It supports features like creating tasks, marking tasks as completed, deleting tasks, and sorting tasks. It also supports authentication using JWT.",
+    technologies: ["React", "ShadCN UI", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "JWT"],
+    features: [
+      "Users can create tasks",
+      "Users can mark tasks as completed",
+      "Users can delete tasks",
+      "Users can login and signup",
+      "Responsive design",
+    ],
+    challenges: [
+      "Well it was my first college's project and simple to create."
+    ],
+    learnings: [
+      "Learnt about JWT",
+      "Implementing authentication using JWT",
+      "Responsive design in tailwind"
+    ],
+    duration: "2-3 Days",
+    githubUrls: [
+      {
+        name: "Front-End",
+        url: "https://github.com/jrskg/todoist-ui"
+      },
+      {
+        name: "Back-End",
+        url: "https://github.com/jrskg/todoist-server"
+      }
+    ],
+    image: "https://res.cloudinary.com/douasqi2q/image/upload/v1739874960/portfolio-data/todo_ircchz.webp",
+    role: "Full Stack Developer",
+    // liveUrl: "",
+    // videoDemo: ""
   }
 ];
