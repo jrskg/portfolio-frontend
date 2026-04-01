@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MoveRightIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Project, projects } from '../data/projects';
 import { containerVariants } from '../utils/animations';
@@ -12,45 +12,55 @@ export default function Projects() {
   const navigate = useNavigate();
 
   return (
-    <section className="py-10 bg-gray-50" id="projects">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="py-32 bg-[#080808]" id="projects">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           exit="exit"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
-          className="text-center mb-16"
+          className="text-center mb-32"
         >
-          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-xl text-gray-600">Some of my recent work</p>
+          <h2 className="text-6xl md:text-8xl font-black mb-8 text-white uppercase italic tracking-tighter">
+            Featured <span className="text-blue-500">Works</span>
+          </h2>
+          <p className="text-xl text-gray-500 max-w-3xl mx-auto font-medium">
+            Architecting scalable solutions from real-time communication platforms to massive enterprise systems.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.slice(0, 3).map((project) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {projects.slice(0, 6).map((project) => (
             <MainProjectCard
               project={project}
               setSelectedProject={setSelectedProject}
               key={project.id}
+              mode="dark"
             />
           ))}
         </div>
-      </div>
 
-      <motion.div
-        initial={{ y: 0 }}
-        animate={{ y: [0, -5, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-        className="flex justify-center px-3 rounded-md py-1 cursor-pointer mt-10 gap-2 items-center bg-gradient-to-r from-blue-500 to-purple-500 w-max m-auto"
-        onClick={() =>  navigate("/project/all")}
-      >
-        <p className="text-xl text-white font-semibold">See More</p>
-        <MoveRightIcon className="w-10  p-2 h-10 text-white" />
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-24 text-center"
+        >
+          <button
+            onClick={() => navigate("/project/all")}
+            className="group relative inline-flex items-center space-x-6 bg-white text-black px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm transition-all duration-500 hover:pr-16 shadow-[0_0_40px_rgba(255,255,255,0.05)]"
+          >
+            <span>View All Archives</span>
+            <ArrowRight className="absolute right-8 opacity-0 group-hover:opacity-100 transition-all" />
+          </button>
+        </motion.div>
+      </div>
 
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+        mode="dark"
       />
     </section>
   );

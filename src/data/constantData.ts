@@ -1,32 +1,29 @@
-export const HEAD_ROLES = [
-  "Node JS Developer",
-  "React Developer",
-  "React Native Developer",
-  "Problem Solver",
-]
+export const SYSTEM_STATUS = {
+  label: "Optimizing Systems at Scale",
+  uptime: "99.9%",
+  location: "Birgunj, Nepal",
+  environment: "Production",
+  lastDeployment: new Date().toLocaleDateString()
+};
+
+export const DASHBOARD_METRICS = [
+  { label: "Payroll Processing", before: "4h", after: "15m", reduction: "93.7%" },
+  { label: "Delta Input Upload", before: "2h", after: "12m", reduction: "90%" },
+  { label: "Report Generation", type: "Dynamic", impact: "High" }
+];
 
 export const BIO_INFO = {
-  devRole:"Full Stack Developer",
-  commitCount: 200,
-  projectCount: 10,
-  slogan:["Transforming Ideas into", "Digital Reality"],
-  paragraph:[
-    "As jr_skg, I've dedicated myself to mastering the art of full-stack development. My journey began with a simple curiosity about how coding and computer science work, which quickly evolved into a passion for creating elegant, efficient solutions to complex problems.",
-
-    "I specialize in building scalable web applications and mobile applications using modern technologies like React, React Native, Node.js, Express.js and cloud services. What sets me apart is my attention to detail and commitment to writing clean, maintainable code that stands the test of time."
+  devRole: "Backend Engineer",
+  name: "Suraj Gupta",
+  alias: "jr_skg",
+  slogan: ["System Performance", "Architect"],
+  paragraph: [
+    "Specialized in architecting high-efficiency enterprise backends. Expert in identifying bottlenecks and implementing radical optimizations that reduce processing times from hours to minutes.",
+    "Currently migrating large-scale payroll architectures to Golang for peak concurrency and throughput."
   ],
-  stats:[
-    {
-      count: 4,
-      text: "Years of Experience"
-    },
-    {
-      count: 300,
-      text: "DSA Problems Solved"
-    },
-    {
-      count: 30000,
-      text: "Lines of Code"
-    }
+  stats: [
+    { count: 4, text: "Years Active" },
+    { count: 50000, text: "Lines Optimized" },
+    { count: 15, text: "Deployments" }
   ]
-}
+};

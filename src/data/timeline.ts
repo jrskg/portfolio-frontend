@@ -1,47 +1,45 @@
-import { BookOpen, Code, Coffee, LucideIcon, Rocket, Smartphone } from 'lucide-react';
+import { Terminal, Activity, Zap, Layers, Cpu } from 'lucide-react';
 
-interface TimelineData {
-  title: string;
-  date: string;
-  description: string;
-  icon: LucideIcon;
-  color: string;
+export interface SystemLog {
+  id: string;
+  timestamp: string;
+  event: string;
+  problem: string;
+  solution: string;
+  result: string;
+  metrics: { label: string; value: string }[];
+  icon: any;
 }
 
-export const timelineData: TimelineData[] = [
+export const systemLogs: SystemLog[] = [
   {
-    title: "Self-Taught Foundations",
-    date: "2020",
-    description: "Started learning programming with C, explored coding through CLI programs, and built simple websites using HTML, CSS, and JavaScript.",
-    icon: BookOpen,
-    color: "bg-blue-500"
+    id: "LOG-001",
+    timestamp: "2024.Q3",
+    event: "Delta Input Optimization",
+    problem: "Uploading 10-15 sheets (2000+ rows each) taking ~2 hours in production.",
+    solution: "Implemented batch processing, optimized repository calls, and reduced redundant database roundtrips.",
+    result: "Processing time slashed to 10-13 minutes.",
+    metrics: [{ label: "Reduction", value: "90%" }, { label: "Sheet Capacity", value: "15+" }],
+    icon: Zap
   },
   {
-    title: "Improved Problem Solving Skills",
-    date: "2021",
-    description: "Learned problem-solving techniques, practiced DSA, and developed an effective approach to complex challenges.",
-    icon: Rocket,
-    color: "bg-pink-500"
+    id: "LOG-002",
+    timestamp: "2024.Q4",
+    event: "Payroll Engine Overhaul",
+    problem: "Payroll processing for 2000+ employees required 4 hours of total system time.",
+    solution: "Re-architected computation logic for concurrency; optimized SQL queries and payslip generation pipeline.",
+    result: "Total time reduced to 15 minutes (7m computation + 5m generation).",
+    metrics: [{ label: "Efficiency", value: "16x" }, { label: "Nodes", value: "Distributed" }],
+    icon: Activity
   },
   {
-    title: "First Major Project",
-    date: "2022",
-    description: "Built a full-stack web app using React, Node.js, and MongoDB, diving into backend development.",
-    icon: Code,
-    color: "bg-green-500"
-  },
-  {
-    title: "First Mobile App",
-    date: "2023",
-    description: "Developed a mobile app using React Native and gained expertise in mobile app development.",
-    icon: Smartphone,
-    color: "bg-pink-500"
-  },
-  {
-    title: "Mastered Real-Time Scaling",
-    date: "2024",
-    description: "Gained expertise in scaling technologies using Redis, Kafka, and WebSockets. Built a real-time, scalable chat application with FCM for notifications.",
-    icon: Coffee,
-    color: "bg-blue-500"
+    id: "LOG-003",
+    timestamp: "2025.Q1",
+    event: "Dynamic Report Engine",
+    problem: "Static report configurations required backend changes for every new user field request.",
+    solution: "Built a dynamic metadata-driven engine allowing users to select any fields at runtime.",
+    result: "Zero backend intervention for custom reporting.",
+    metrics: [{ label: "Configs", value: "Dynamic" }, { label: "Agility", value: "Max" }],
+    icon: Layers
   }
 ];

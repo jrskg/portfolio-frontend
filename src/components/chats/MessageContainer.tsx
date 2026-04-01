@@ -2,18 +2,15 @@ import React, { memo, useEffect, useRef } from 'react'
 import ChatMessage from './ChatMessage'
 import AITyping from './AITyping'
 import { Message } from '../../context/messages';
+import { Terminal } from 'lucide-react';
 
 const messageSuggestions = [
-  "Who are you?",
-  "What is your name?",
-  "Show me your projects",
-  "What are your recent activities?",
-  "What are your skills?",
-  "I want to connect with suraj gupta",
-  "What are your hobbies?",
-  "What are your qualifications?",
-  "What are your interests?",
-  "What are your strengths?",
+  "How did you optimize the payroll system?",
+  "Tell me about the Delta Input upload optimization",
+  "Show me your backend technical stack",
+  "What is the status of the Golang migration?",
+  "Summarize your experience at Jellyfish Technology",
+  "How can I contact you for a project?",
 ];
 
 interface Props {
@@ -22,7 +19,6 @@ interface Props {
   onSuggestionsClick: (msg: string) => void;
 }
 const MessageContainer: React.FC<Props> = ({ aiTyping, messages, onSuggestionsClick }) => {
-  console.log("Rendering MessageContainer");
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,26 +28,35 @@ const MessageContainer: React.FC<Props> = ({ aiTyping, messages, onSuggestionsCl
   }, [messages]);
 
   return (
-    <div className="flex-1 overflow-y-auto py-4 space-y-1">
+    <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-blue-500/20 scrollbar-track-transparent">
       {messages.length === 0 && (
-        <div className="w-full flex flex-col items-center justify-center mt-5 gap-3 px-4">
-          <h2 className="text-lg font-semibold text-slate-300">Try one of these messages:</h2>
-
-          {messageSuggestions.map((msg, index) => (
-            <div
-              onClick={() => onSuggestionsClick(msg)}
-              key={index}
-              className="w-full max-w-md text-center px-2 py-1 rounded-md shadow-md bg-gray-900 
-                       transition-transform hover:scale-105 hover:shadow-lg cursor-pointer"
-            >
-              <p className="text-transparent bg-clip-text text-lg bg-gradient-to-r from-blue-500 to-purple-500 font-medium">
-                {msg}
-              </p>
+        <div className="flex flex-col items-center justify-center min-h-full space-y-8 animate-in fade-in duration-700">
+          <div className="flex flex-col items-center space-y-4">
+            <div className="p-4 rounded-3xl bg-blue-500/5 border border-blue-500/10">
+              <Terminal className="w-12 h-12 neon-text-blue" />
             </div>
-          ))}
+            <div className="text-center">
+              <h2 className="text-xl font-black text-white uppercase tracking-tighter italic">System Neural Link</h2>
+              <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mt-1">Ready for input queries</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl">
+            {messageSuggestions.map((msg, index) => (
+              <button
+                onClick={() => onSuggestionsClick(msg)}
+                key={index}
+                className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04] transition-all duration-300 text-left group"
+              >
+                <p className="text-xs font-mono text-gray-400 group-hover:text-blue-400 transition-colors italic leading-relaxed">
+                  {">"} {msg}
+                </p>
+              </button>
+            ))}
+          </div>
         </div>
-      )
-      }
+      )}
+      
       {messages.map((msg) => (
         <ChatMessage
           key={msg.id}
@@ -61,10 +66,9 @@ const MessageContainer: React.FC<Props> = ({ aiTyping, messages, onSuggestionsCl
         />
       ))}
       {aiTyping && <AITyping />}
-      <div ref={bottomRef} />
+      <div ref={bottomRef} className="h-4" />
     </div>
   )
 }
 
 export default memo(MessageContainer);
-// export default MessageContainer;

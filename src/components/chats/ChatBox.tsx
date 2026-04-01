@@ -1,4 +1,4 @@
-import { EyeIcon, Send } from 'lucide-react';
+import { EyeIcon, Send, Terminal } from 'lucide-react';
 import React, { memo, useContext, useState } from 'react';
 import { MessageContext } from '../../context/messages';
 import MessageContainer from './MessageContainer';
@@ -78,36 +78,78 @@ const ChatBox: React.FC<ChatBoxProps> = ({ onAIResponse }) => {
   };
 
   return (
-    <div className="flex w-full flex-col h-full bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 shadow-md shadow-blue-900/40 rounded-lg">
-      <MessageContainer
-        onSuggestionsClick={onSuggestionClick}
-        aiTyping={aiTyping}
-        messages={messages}
-      />      
+    <div className="flex w-full flex-col h-full glass-card rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+      {/* Header */}
+      <div className="p-4 border-b border-white/5 bg-white/[0.02] flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
+            <Terminal className="w-4 h-4 neon-text-blue" />
+          </div>
+          <div>
+            <span className="text-xs font-mono font-black text-white uppercase tracking-widest italic">Comms_Link::Secure</span>
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[8px] font-mono text-gray-500 uppercase tracking-widest">AI Core Active</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex space-x-1.5">
+          <div className="w-2 h-2 rounded-full bg-white/5" />
+          <div className="w-2 h-2 rounded-full bg-white/5" />
+          <div className="w-2 h-2 rounded-full bg-white/5" />
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-hidden bg-black/40">
+        <MessageContainer
+          onSuggestionsClick={onSuggestionClick}
+          aiTyping={aiTyping}
+          messages={messages}
+        />      
+      </div>
 
       {/* Input Area */}
-      <div className="flex items-center gap-3 border-t border-gray-200 p-4">
-        {(repos.length > 0 || events.length > 0) && <ToolTip text='Show data'>
-          <button onClick={() => onAIResponse(SERVER_DATA_KEYS.GITHUB_REPOS)} className='p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors'>
-            <EyeIcon className='w-6 h-6' />
+      <div className="p-6 border-t border-white/5 bg-white/[0.01]">
+        <div className="relative flex items-center gap-4">
+          {(repos.length > 0 || events.length > 0) && (
+            <ToolTip text='Visualize Response Data'>
+              <button 
+                onClick={() => onAIResponse(SERVER_DATA_KEYS.GITHUB_REPOS)} 
+                className='p-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 transition-all shadow-[0_0_15px_rgba(0,240,255,0.05)]'
+              >
+                <EyeIcon className='w-5 h-5' />
+              </button>
+            </ToolTip>
+          )}
+          
+          <div className="relative flex-1">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500/50 font-mono text-xs italic">{">"}</span>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSend(input)}
+              className="w-full pl-8 pr-4 py-4 bg-white/[0.03] border border-white/10 rounded-2xl text-white font-mono text-sm focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.05] transition-all placeholder:text-gray-600 italic"
+              placeholder="Query the system archives..."
+              disabled={aiTyping}
+            />
+          </div>
+
+          <button
+            disabled={aiTyping || !input.trim()}
+            onClick={() => handleSend(input)}
+            className={cn(
+              "p-4 bg-white text-black rounded-2xl transition-all duration-300 shadow-xl",
+              (aiTyping || !input.trim()) ? "opacity-20 grayscale cursor-not-allowed" : "hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            )}
+          >
+            <Send className="w-5 h-5" />
           </button>
-        </ToolTip>}
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSend(input)}
-          className="flex-1 p-2 border text-white bg-slate-700 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-slate-500 disabled:cursor-not-allowed transition-all duration-150"
-          placeholder="Ask about me anything..."
-          disabled={aiTyping}
-        />
-        <button
-          disabled={aiTyping}
-          onClick={() => handleSend(input)}
-          className={cn("p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors", aiTyping && "cursor-not-allowed opacity-50 hover:bg-blue-500")}
-        >
-          <Send className="w-6 h-6" />
-        </button>
+        </div>
+        <div className="mt-3 flex justify-between px-2">
+          <span className="text-[8px] font-mono text-gray-600 uppercase tracking-widest italic">Input: Terminal_Standard_v4</span>
+          <span className="text-[8px] font-mono text-gray-600 uppercase tracking-widest italic">Encryption: Active</span>
+        </div>
       </div>
     </div>
   );

@@ -4,91 +4,78 @@ import { containerVariants, itemVariants } from '../utils/animations';
 
 export default function About() {
   return (
-    <section className="py-10 bg-gray-50" id="about">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="py-32 bg-[#050505]" id="about">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           exit="exit"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
-          className="text-center mb-16"
+          className="text-center mb-32"
         >
-          <motion.h2 variants={itemVariants} className="text-4xl font-bold mb-4">
-            About Me
+          <motion.h2 variants={itemVariants} className="text-6xl md:text-8xl font-black mb-8 text-white uppercase italic tracking-tighter">
+            About <span className="text-purple-500">Me</span>
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-xl text-gray-600">
-            Passionate about turning ideas into reality through code
+          <motion.p variants={itemVariants} className="text-xl text-gray-500 max-w-3xl mx-auto font-medium">
+            Merging high-performance engineering with intentional digital architecture.
           </motion.p>
         </motion.div>
 
-        {/* Content Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           exit="exit"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center"
         >
-          {/* About Me Section */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            <h3 className="text-2xl font-semibold mb-4">Who is jr_skg?</h3>
-            <p className="text-gray-600 leading-relaxed text-justify">
-              Hi! I'm Suraj Gupta, a passionate Full Stack Developer with a love for creating elegant solutions to
-              complex problems. I specialize in building scalable web and mobile applications using modern technologies.
-              I thrive on learning new things to continuously expand my knowledge and skills.
+          <motion.div variants={itemVariants} className="space-y-10">
+            <h3 className="text-4xl font-black text-white uppercase italic tracking-tight">Engineering with Purpose</h3>
+            <p className="text-xl text-gray-400 leading-relaxed font-medium">
+              I'm Suraj Gupta, a Full Stack Developer specializing in high-performance enterprise systems. My focus is on reducing critical processing times from hours to minutes through radical optimization.
             </p>
-            <p className="text-gray-600 leading-relaxed text-justify">
-              When I'm not coding, you can find me spending quality time with friends, playing video games, or exploring
-              the latest trends in technology. I strongly believe in continuous learning and actively sharing knowledge
-              with the developer community.
+            <p className="text-xl text-gray-400 leading-relaxed font-medium">
+              Driven by technical challenges, I'm currently architecting high-throughput microservices in Golang while maintaining a deep mastery of the NestJS and React ecosystem.
             </p>
           </motion.div>
 
           <motion.div variants={containerVariants} className="grid grid-cols-2 gap-6">
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 bg-white rounded-lg shadow-md text-center"
-            >
-              <Code2 className="w-8 h-8 text-blue-500 mb-4 mx-auto" />
-              <h4 className="font-semibold mb-2">Clean Code</h4>
-              <p className="text-gray-600">Writing maintainable and efficient code</p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 bg-white rounded-lg shadow-md text-center"
-            >
-              <Rocket className="w-8 h-8 text-purple-500 mb-4 mx-auto" />
-              <h4 className="font-semibold mb-2">Innovation</h4>
-              <p className="text-gray-600">Exploring new technologies</p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 bg-white rounded-lg shadow-md text-center"
-            >
-              <Heart className="w-8 h-8 text-red-500 mb-4 mx-auto" />
-              <h4 className="font-semibold mb-2">Passion</h4>
-              <p className="text-gray-600">Love for problem solving</p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 bg-white rounded-lg shadow-md text-center"
-            >
-              <Coffee className="w-8 h-8 text-yellow-500 mb-4 mx-auto" />
-              <h4 className="font-semibold mb-2">Dedication</h4>
-              <p className="text-gray-600">Committed to excellence</p>
-            </motion.div>
+            <FeatureCard 
+              icon={<Code2 className="w-8 h-8 text-blue-500" />}
+              title="Architecture"
+              desc="System Integrity"
+            />
+            <FeatureCard 
+              icon={<Rocket className="w-8 h-8 text-purple-500" />}
+              title="Velocity"
+              desc="Radical Optimization"
+            />
+            <FeatureCard 
+              icon={<Heart className="w-8 h-8 text-pink-500" />}
+              title="Scalability"
+              desc="Elastic Growth"
+            />
+            <FeatureCard 
+              icon={<Coffee className="w-8 h-8 text-indigo-500" />}
+              title="Precision"
+              desc="Quality Centric"
+            />
           </motion.div>
         </motion.div>
       </div>
     </section>
   );
 }
+
+const FeatureCard = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
+  <motion.div
+    variants={itemVariants}
+    whileHover={{ y: -10, scale: 1.02 }}
+    className="p-10 bg-white/[0.02] rounded-[2.5rem] border border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04] transition-all duration-500 shadow-2xl relative overflow-hidden group"
+  >
+    <div className="mb-6 group-hover:scale-110 transition-transform duration-500">{icon}</div>
+    <h4 className="text-xl font-black text-white mb-2 uppercase tracking-tight">{title}</h4>
+    <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">{desc}</p>
+  </motion.div>
+)

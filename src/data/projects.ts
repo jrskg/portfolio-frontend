@@ -234,5 +234,32 @@ export const projects: Project[] = [
     role: "Full Stack Developer",
     // liveUrl: "",
     // videoDemo: ""
+  },
+  {
+    id: 6,
+    title: "Payroll Module v2 (Migration)",
+    description: "Migrating a highly optimized payroll system to Golang for extreme performance.",
+    longDescription: "Currently migrating the optimized payroll module from NestJS to Golang to achieve even greater efficiency gains. The goal is to further reduce the 15-minute processing time for 2,000 employees and leverage Golang's concurrency model for high-throughput tasks.",
+    technologies: ["Golang", "Postgres", "TypeORM (Migration from)", "Docker", "Microservices"],
+    features: [
+      "High-performance payroll computation",
+      "Concurrent processing of employee records",
+      "Optimized database queries",
+      "Scalable microservice architecture",
+    ],
+    challenges: [
+      "Ensuring mathematical accuracy during migration",
+      "Mapping complex business logic from TypeScript to Golang",
+      "Optimizing database interactions for high concurrency"
+    ],
+    learnings: [
+      "Advanced Golang concurrency patterns",
+      "Performance profiling and optimization",
+      "Building high-reliability financial systems"
+    ],
+    githubUrls: [],
+    image: "https://res.cloudinary.com/douasqi2q/image/upload/v1739463105/portfolio-data/goss_iq6exs.jpg", // Placeholder image
+    duration: "Ongoing",
+    role: "Lead Developer"
   }
 ];

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { cn } from '../../lib/utils';
 import Markdown from 'react-markdown';
 import { memo } from 'react';
+import { User, Cpu } from 'lucide-react';
 
 interface Props {
   text: string;
@@ -9,28 +10,47 @@ interface Props {
   isUser: boolean;
 }
 const ChatMessage: React.FC<Props> = ({ isUser, text }) => {
-  console.log("Rendering ChatMessage");
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className={`flex relative ${isUser ? 'justify-end' : 'justify-start'
-        }`}
+      initial={{ opacity: 0, x: isUser ? 20 : -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className={cn(
+        "flex w-full items-start gap-4 mb-6",
+        isUser ? "flex-row-reverse" : "flex-row"
+      )}
     >
-      <div className={
-        cn("absolute h-0 w-0 border-l-[20px] border-t-[20px] border-r-[20px] border-l-transparent border-r-transparent",
-          isUser ? 'border-t-slate-800 right-0' : 'border-t-gray-900'
-        )
-      } />
-      <div
-        className={cn("z-10 py-2 px-4 min-w-[20%] flex justify-center rounded-md max-w-[90%] md:max-w-[80%]", isUser ?
-          'bg-slate-800 text-slate-100 mr-2' :
-          'bg-gray-900 ml-2'
-        )}
-      >
-        {isUser ? <p className="text-[16px]">{text}</p> :
-          <div className='prose prose-a:break-words px-3 text-slate-200 list-disc marker:text-slate-200'>
+      {/* Icon */}
+      <div className={cn(
+        "flex-shrink-0 p-2.5 rounded-xl border transition-all duration-500 shadow-2xl",
+        isUser 
+          ? "bg-white text-black border-white/20" 
+          : "bg-blue-500/10 text-blue-400 border-blue-500/20"
+      )}>
+        {isUser ? <User size={18} /> : <Cpu size={18} className="animate-pulse" />}
+      </div>
+
+      {/* Message Bubble */}
+      <div className={cn(
+        "relative max-w-[85%] md:max-w-[70%] p-5 rounded-[1.5rem] border transition-all duration-500",
+        isUser 
+          ? "bg-white/[0.05] border-white/10 text-white rounded-tr-none" 
+          : "glass-card border-white/5 text-gray-300 rounded-tl-none shadow-blue-500/5 shadow-2xl"
+      )}>
+        {/* Technical Header */}
+        <div className="flex items-center space-x-3 mb-2 opacity-40">
+          <span className="text-[8px] font-mono font-black uppercase tracking-[0.2em]">
+            {isUser ? "Authorized_User" : "System_Core_AI"}
+          </span>
+          <div className="h-px w-8 bg-current opacity-20" />
+          <span className="text-[8px] font-mono uppercase tracking-[0.2em]">
+            {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+          </span>
+        </div>
+
+        {isUser ? (
+          <p className="text-sm font-mono leading-relaxed italic">{">"} {text}</p>
+        ) : (
+          <div className='prose prose-invert prose-sm font-mono leading-relaxed italic max-w-none text-gray-400'>
             <Markdown
               components={{
                 a: ({ href, children }) => (
@@ -38,22 +58,33 @@ const ChatMessage: React.FC<Props> = ({ isUser, text }) => {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-500 hover:text-blue-600 underline cursor-pointer"
+                    className="neon-text-blue hover:underline decoration-blue-500/30 transition-all"
                   >
                     {children}
                   </a>
                 ),
                 strong: ({ children }) =>
-                  <strong className="text-[#00d9ff]">{children}</strong>,
+                  <strong className="neon-text-blue font-black">{children}</strong>,
                 code: ({ children }) => 
-                  <code className="text-[#00d9ff]">{children}</code>,
+                  <code className="bg-white/5 px-1.5 py-0.5 rounded text-blue-400 border border-white/5">{children}</code>,
+                li: ({ children }) => 
+                  <li className="list-none flex items-start space-x-2 mb-1">
+                    <span className="text-blue-500/50 mt-1.5 text-[8px]">●</span>
+                    <span>{children}</span>
+                  </li>
               }}
             >{text}</Markdown>
-          </div>}
+          </div>
+        )}
+
+        {/* Decorative corner node */}
+        <div className={cn(
+          "absolute -bottom-1 w-2 h-2 rounded-full",
+          isUser ? "right-4 bg-white/10" : "left-4 bg-blue-500/20 shadow-[0_0_8px_rgba(0,240,255,0.2)]"
+        )} />
       </div>
     </motion.div>
   );
 };
 
 export default memo(ChatMessage);
-// export default ChatMessage
