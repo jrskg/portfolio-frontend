@@ -76,15 +76,15 @@ const Chat = () => {
       </header>
 
       {/* Main Content Area */}
-      <div className="flex-1 relative z-10 p-4 md:p-8 flex items-center justify-center">
-        <div className={cn("relative w-full max-w-7xl h-full flex transition-all duration-500 gap-6 items-center")}>
+      <main className="flex-1 relative z-10 p-4 md:p-8 flex items-center justify-center min-h-0">
+        <div className={cn("relative w-full max-w-7xl h-full flex transition-all duration-500 gap-6 items-center min-h-0")}>
           {screenWidth > 768 ? (
             <>
               <motion.div
                 layout
                 className={cn(
                   "transition-all duration-500 h-full",
-                  interactiveTab ? "w-1/2" : "w-full max-w-3xl mx-auto"
+                  interactiveTab ? "w-1/2" : "w-full max-w-5xl mx-auto"
                 )}
               >
                 <ChatBox onAIResponse={handleAIResponse} />
@@ -138,7 +138,7 @@ const Chat = () => {
             </div>
           )}
         </div>
-      </div>
+      </main>
 
       {/* Footer Info */}
       <footer className="p-4 bg-black/40 border-t border-white/5 flex justify-between items-center text-[8px] font-mono text-gray-600 uppercase tracking-widest">

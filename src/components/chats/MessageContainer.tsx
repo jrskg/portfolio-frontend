@@ -28,7 +28,7 @@ const MessageContainer: React.FC<Props> = ({ aiTyping, messages, onSuggestionsCl
   }, [messages]);
 
   return (
-    <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-blue-500/20 scrollbar-track-transparent">
+    <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-blue-500/20 scrollbar-track-transparent">
       {messages.length === 0 && (
         <div className="flex flex-col items-center justify-center min-h-full space-y-8 animate-in fade-in duration-700">
           <div className="flex flex-col items-center space-y-4">
