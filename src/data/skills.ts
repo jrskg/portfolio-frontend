@@ -2,14 +2,20 @@ export interface SkillNode {
   name: string;
   level: number;
   context: string;
-  category: "Backend" | "Frontend" | "Optimization" | "Database" | "DevOps" | "Real-time";
+  category: "GenAI" | "Backend" | "Frontend" | "Optimization" | "Database" | "DevOps" | "Real-time";
 }
 
 export const techMatrix: SkillNode[] = [
+  // GenAI & AI Tooling
+  { name: "Claude Code", level: 90, category: "GenAI", context: "Daily driver at work + shipped 2 real side projects" },
+  { name: "Prompt Engineering", level: 80, category: "GenAI", context: "System prompts, tool-calling, structured output" },
+  { name: "RAG", level: 40, category: "GenAI", context: "Learning — built a simple CLI RAG chatbot" },
+  { name: "Agentic AI", level: 35, category: "GenAI", context: "Learning — exploring agent & tool-use patterns" },
+  { name: "Gemini API", level: 70, category: "GenAI", context: "Powers this portfolio's AI chatbot backend" },
+
   // Backend & Languages
   { name: "Node.js", level: 90, category: "Backend", context: "Enterprise APIs & Scalable Microservices" },
   { name: "NestJS", level: 95, category: "Backend", context: "Modular Architecture & High-Performance Backends" },
-  { name: "Golang", level: 75, category: "Backend", context: "High-concurrency Payroll v2 Migration (Ongoing)" },
   { name: "Express.js", level: 90, category: "Backend", context: "Lightweight RESTful Services" },
   { name: "TypeScript", level: 95, category: "Backend", context: "Type-safe System Engineering" },
   

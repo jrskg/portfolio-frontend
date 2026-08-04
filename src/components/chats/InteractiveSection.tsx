@@ -34,27 +34,32 @@ const InteractiveSection: React.FC<Props> = ({handleCloseSection, interactiveTab
   }, [interactiveTab])
   
   return (
-    <div className="h-full w-full overflow-hidden bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 shadow-md shadow-blue-900/40 rounded-lg">
-      <div className='flex justify-between items-center p-2'>
-        <h2 className="text-xl font-semibold">
+    <div className="h-full w-full overflow-hidden glass-card border border-white/10 rounded-2xl flex flex-col">
+      <div className='flex justify-between items-center p-5 border-b border-white/5'>
+        <h2 className="text-base font-semibold text-white">
           {getHeading(selectedTab)}
         </h2>
-        <XIcon onClick={handleCloseSection} className='w-6 h-6 cursor-pointer'/>
+        <button
+          onClick={handleCloseSection}
+          className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
+        >
+          <XIcon className='w-4 h-4' />
+        </button>
       </div>
-      <div className='flex gap-2 px-3 mt-1'>
+      <div className='flex gap-2 px-5 pt-4'>
         {tabs.map((tab) => (
           <button
             onClick={() => setSelectedTab(tab.key)}
             key={tab.key}
-            className={cn('px-3 py-[6px] hover:bg-slate-900 transition-all duration-150 rounded text-gray-300',
-              selectedTab === tab.key && 'bg-slate-900 text-slate-100'
+            className={cn('px-4 py-1.5 text-sm rounded-full border border-transparent transition-all duration-150 text-gray-400 hover:text-white',
+              selectedTab === tab.key && 'bg-blue-500/10 border-blue-500/20 text-blue-300'
             )}
           >
             {tab.label}
           </button>
         ))}
       </div>
-      <div className="mt-2 w-full h-[calc(100%-100px)] overflow-y-auto space-y-4 py-2 px-5">
+      <div className="mt-2 w-full flex-1 min-h-0 overflow-y-auto space-y-4 py-2 px-5">
         {(()=>{
           switch(selectedTab){
             case SERVER_DATA_KEYS.GITHUB_REPOS:

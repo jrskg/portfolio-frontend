@@ -12,14 +12,17 @@
 
 * {
   scroll-behavior: smooth;
-  cursor: crosshair;
 }
 
 body {
   background-color: var(--bg-dark);
   color: #e2e8f0;
-  font-family: 'JetBrains Mono', 'Inter', monospace;
+  font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
+}
+
+.font-display {
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -55,22 +58,6 @@ body {
 .neon-text-purple {
   color: var(--neon-purple);
   text-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
-}
-
-.scanline {
-  width: 100%;
-  height: 100px;
-  z-index: 10;
-  background: linear-gradient(0deg, rgba(0, 240, 255, 0) 0%, rgba(0, 240, 255, 0.02) 50%, rgba(0, 240, 255, 0) 100%);
-  opacity: 0.1;
-  position: absolute;
-  bottom: 100%;
-  animation: scanline 10s linear infinite;
-}
-
-@keyframes scanline {
-  0% { bottom: 100%; }
-  100% { bottom: -100px; }
 }
 
 .grid-bg {

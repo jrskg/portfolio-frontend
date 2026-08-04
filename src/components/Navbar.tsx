@@ -1,52 +1,47 @@
 import { motion } from 'framer-motion';
-import { Menu, X, Terminal, Cpu } from 'lucide-react';
+import { Menu, X, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Terminal', href: '#' },
-  { name: 'Optimization', href: '#optimization' },
-  { name: 'Logs', href: '#timeline' },
-  { name: 'Matrix', href: '#skills' },
-  { name: 'Deployments', href: '#projects' },
+  { name: 'Learning', href: '#learning' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'AI Builds', href: '#ai-builds' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#0b0f19]/40 backdrop-blur-xl border-b border-white/5">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#0b0f19]/70 backdrop-blur-xl border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex justify-between items-center h-20">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-              <Cpu className="w-5 h-5 neon-text-blue" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter text-white uppercase italic">
-                JR_SKG
-              </span>
-              <span className="text-[8px] font-mono text-gray-500 uppercase tracking-widest font-black">Sys_Admin v7.0.1</span>
-            </div>
-          </div>
-          
+          <a href="#home" className="text-lg font-bold tracking-tight text-white">
+            jr_skg
+          </a>
+
           <div className="hidden md:block">
-            <div className="flex items-center space-x-10">
+            <div className="flex items-center space-x-8">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-500 hover:text-white transition-all duration-300 font-mono font-black uppercase text-[10px] tracking-widest flex items-center space-x-2 group"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium"
                 >
-                  <span className="opacity-0 group-hover:opacity-100 neon-text-blue transition-opacity">{"["}</span>
-                  <span>{link.name}</span>
-                  <span className="opacity-0 group-hover:opacity-100 neon-text-blue transition-opacity">{"]"}</span>
+                  {link.name}
                 </a>
               ))}
-              <div className="h-4 w-[1px] bg-white/10" />
-              <div className="flex items-center space-x-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]" />
-                <span className="text-[10px] font-mono text-green-500 uppercase font-black">Live</span>
-              </div>
+              <button
+                onClick={() => navigate('/chat')}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-sm font-medium text-gray-300"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Ask AI about me</span>
+              </button>
             </div>
           </div>
 
@@ -55,7 +50,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-400 hover:text-white p-2 rounded-xl bg-white/5 transition-all"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -68,17 +63,27 @@ export default function Navbar() {
           animate={{ opacity: 1, height: 'auto' }}
           className="md:hidden bg-[#0b0f19]/95 backdrop-blur-3xl border-b border-white/5"
         >
-          <div className="px-6 py-8 space-y-4">
+          <div className="px-6 py-8 space-y-5">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block text-2xl font-black text-gray-500 hover:text-white transition-colors uppercase italic"
+                className="block text-xl font-semibold text-gray-300 hover:text-white transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </a>
             ))}
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate('/chat');
+              }}
+              className="flex items-center gap-2 text-xl font-semibold text-blue-400"
+            >
+              <MessageSquare className="w-5 h-5" />
+              <span>Ask AI about me</span>
+            </button>
           </div>
         </motion.div>
       )}

@@ -47,12 +47,13 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          className="mb-20 max-w-2xl"
         >
-          <h2 className="text-6xl md:text-8xl font-black mb-8 text-white uppercase italic tracking-tighter">
-            Get In <span className="text-blue-500">Touch</span>
+          <span className="text-xs font-mono uppercase tracking-widest text-blue-400">Contact</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-3">
+            Get in touch
           </h2>
-          <p className="text-xl text-gray-500 max-w-3xl mx-auto font-medium">
+          <p className="text-gray-500 leading-relaxed">
             Let's build something extraordinary together.
           </p>
         </motion.div>
@@ -126,9 +127,9 @@ export default function Contact() {
               onClick={sendEmail}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-white text-black py-6 rounded-3xl font-black uppercase tracking-widest text-sm flex items-center justify-center space-x-4 shadow-xl"
+              className="w-full bg-white text-black py-5 rounded-3xl font-semibold text-sm flex items-center justify-center space-x-3 shadow-xl"
             >
-              <span>{loading ? "Transmitting..." : "Send Message"}</span>
+              <span>{loading ? "Sending..." : "Send message"}</span>
               <Send className="w-5 h-5" />
             </motion.button>
           </motion.div>

@@ -1,4 +1,4 @@
-import { ChevronDown, XIcon, ArrowLeft, Cpu, ShieldCheck, Activity } from 'lucide-react';
+import { ChevronDown, ArrowLeft, MessageSquare } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import ChatBox from '../components/chats/ChatBox';
 import InteractiveSection from '../components/chats/InteractiveSection';
@@ -37,40 +37,25 @@ const Chat = () => {
   )
 
   return (
-    <div className="relative w-screen h-screen bg-[#0b0f19] text-white overflow-hidden flex flex-col font-mono">
+    <div className="relative w-screen h-screen bg-[#0b0f19] text-white overflow-hidden flex flex-col">
       <Particles />
-      <div className="scanline" />
 
       {/* Header */}
       <header className="relative z-20 p-6 border-b border-white/5 bg-black/20 backdrop-blur-xl flex items-center justify-between">
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-5">
           <motion.button
-            whileHover={{ scale: 1.1, x: -5 }}
+            whileHover={{ scale: 1.05, x: -3 }}
             onClick={() => navigate('/')}
-            className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all shadow-2xl"
+            className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-all"
           >
             <ArrowLeft className="w-5 h-5" />
           </motion.button>
           <div className="flex flex-col">
-            <h1 className="text-xl font-black text-white uppercase italic tracking-tighter flex items-center gap-3">
-              <Cpu className="w-5 h-5 neon-text-blue" />
-              System Neural Link
+            <h1 className="text-lg font-bold text-white flex items-center gap-2">
+              <MessageSquare className="w-4 h-4 text-blue-400" />
+              Ask AI about me
             </h1>
-            <span className="text-[8px] font-mono text-gray-500 uppercase tracking-[0.3em]">Encrypted_Comm_Session::v4.0.2</span>
-          </div>
-        </div>
-
-        <div className="hidden md:flex items-center space-x-8">
-          <div className="flex flex-col items-end">
-            <span className="text-[8px] font-mono text-gray-600 uppercase tracking-widest">Connection</span>
-            <span className="text-[10px] font-black text-green-500 uppercase italic">Secure</span>
-          </div>
-          <div className="flex flex-col items-end border-l border-white/10 pl-8">
-            <span className="text-[8px] font-mono text-gray-600 uppercase tracking-widest">Link Stability</span>
-            <div className="flex items-center space-x-2">
-              <Activity className="w-3 h-3 text-blue-500 animate-pulse" />
-              <span className="text-[10px] font-black text-blue-400 uppercase italic">98.4%</span>
-            </div>
+            <span className="text-xs text-gray-500">Trained on my real experience and projects</span>
           </div>
         </div>
       </header>
@@ -130,9 +115,9 @@ const Chat = () => {
                   initial={{ y: 50 }}
                   animate={{ y: 0 }}
                   onClick={() => setToggleDetails(true)}
-                  className="absolute top-4 left-1/2 -translate-x-1/2 z-40 px-6 py-2 rounded-full bg-blue-500 text-white font-black text-[10px] uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.3)] flex items-center gap-2"
+                  className="absolute top-4 left-1/2 -translate-x-1/2 z-40 px-5 py-2 rounded-full bg-blue-500 text-white font-medium text-xs shadow-xl flex items-center gap-2"
                 >
-                  Visualizing Data <ChevronDown className="w-3 h-3" />
+                  View data <ChevronDown className="w-3 h-3" />
                 </motion.button>
               )}
             </div>
@@ -141,19 +126,8 @@ const Chat = () => {
       </main>
 
       {/* Footer Info */}
-      <footer className="p-4 bg-black/40 border-t border-white/5 flex justify-between items-center text-[8px] font-mono text-gray-600 uppercase tracking-widest">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-1">
-            <ShieldCheck className="w-3 h-3" />
-            <span>End-to-End Verified</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <span>Core::Suraj_Gupta</span>
-          </div>
-        </div>
-        <div>
-          Session_Time: {new Date().toLocaleDateString()}
-        </div>
+      <footer className="p-4 bg-black/40 border-t border-white/5 flex justify-center items-center text-xs text-gray-600">
+        Responses are AI-generated based on my real profile — for anything important, use the contact form.
       </footer>
     </div>
   );
